@@ -6,12 +6,10 @@ const Header = () => {
 
 const { user, onClose } = useTelegram();
 
-console.log('user',user)
-
   return (
     <header className="header">
-      <Button onClick={onClose} >Закрыть</Button>
-      <span>{user.username}</span>
+      {/*<Button onClick={onClose} >Закрыть </Button>*/}
+      {user && <span>{user?.username}</span>}
     </header>
   );
 };

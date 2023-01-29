@@ -1,0 +1,9 @@
+.form-item, .form-select {
+  padding: 10px 15px;
+  display: block;
+
+}
+
+.form-row {
+  margin-bottom: 10px;
+}
