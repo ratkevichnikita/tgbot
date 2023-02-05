@@ -1,5 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Roboto:wght@300;400;600&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #242424;
+}
+
 .wrapper {
   max-width: 1200px;
   padding: 0 10px;
   margin: 0 auto;
+}
+
+h1,h2,h3,h4 {
+  box-sizing: border-box;
+}
+
+textarea,button {
+  outline: none;
+}
+
+ul,li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+div,ul,li,img,span,a,p,input,select,textarea {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

@@ -1,0 +1,119 @@
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  flex-wrap: wrap;
+  max-width: 400px;
+  padding-top: 20px;
+}
+
+.products-item {
+  position: relative;
+  padding: 15px;
+  max-width: 180px;
+  break-inside: avoid;
+}
+
+.products-link {
+  border-bottom: 1px solid #239DEF;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.3em;
+  margin-right: 5px;
+  padding-bottom: 3px;
+}
+
+.products-title {
+  text-align: center;
+  max-width: 130px;
+  margin: 10px auto 10px;
+}
+
+.products-add {
+  background: #239DEF;
+  border-radius: 5px;
+  padding: 5px 8px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.35em;
+  color: #fff;
+  transform: translateY(-100%);
+  animation: showIn 0.3s linear forwards;
+}
+
+.products-price {
+  font-size: 14px;
+  line-height: 1.3em;
+  text-align: center;
+  color: #239DEF;
+  margin-bottom: 15px;
+}
+
+.products-count {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 14px;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #239DEF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.products-btn {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  min-width: 26px;
+  min-height: 26px;
+  height: 26px;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #239DEF;
+  transform: translateY(-100%);
+  animation: showIn 0.3s linear forwards;
+}
+
+.products-more {
+  display: flex;
+}
+
+.products-btn.increase {
+  color: #fff;
+  background-color: #239DEF;
+  margin-left: 7px;
+  border: 1px solid transparent;
+}
+
+.products-btn.increase:active {
+  background-image: radial-gradient(ellipse farthest-corner at 50% 50%, rgba(0,0,0,0.1), rgba(0,0,0,0.2));
+}
+
+.products-btn.decrease:active {
+  background-image: radial-gradient(ellipse farthest-corner at 50% 50%, rgba(239,35,80,0.3), rgba(239,35,80,0.5));
+}
+
+.products-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  max-width: 170px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@keyframes showIn {
+  0% {
+    transform: translateY(-100%);
+  }
+  100%  {
+    transform: translateY(0);
+  }
+}

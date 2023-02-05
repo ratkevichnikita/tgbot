@@ -1,14 +1,15 @@
 import React from 'react';
 import Button from "../Button/Button";
 import {useTelegram} from "../hooks/useTelegram";
+// import Cart from "../Cart/Cart";
 
-const Header = () => {
+const Header = ({addedProducts}) => {
 
-const { user, onClose } = useTelegram();
+const { user } = useTelegram();
 
   return (
     <header className="header">
-      {/*<Button onClick={onClose} >Закрыть </Button>*/}
+      {/*<Cart count={addedProducts} />*/}
       {user && <span>{user?.username}</span>}
     </header>
   );
