@@ -100,7 +100,7 @@ function App() {
         <Context.Provider value={{onAdd,onRemove,addMore,uniqueProducts}}>
           <Header addedProducts={addedProducts.length} />
           <Routes>
-            <Route index element={<ProductsList products={productsList} addedProducts={addedProducts} />} />
+            <Route path={'/'} exact element={<ProductsList products={productsList} addedProducts={addedProducts} />} />
             <Route path={'/form'} element={<Form moveBack={moveBack} uniqueProducts={uniqueProducts} />} />
             <Route exact path={'/products/:id'} element={<ProductsSingle />} />
           </Routes>
