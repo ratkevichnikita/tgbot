@@ -33,7 +33,7 @@ const Form = ({moveBack}) => {
       queryId
     }
 
-    fetch('http://192.168.0.109:8000/web-data', {
+    fetch('https://192.168.0.109:8000/web-data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
