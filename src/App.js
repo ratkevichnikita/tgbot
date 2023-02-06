@@ -98,7 +98,7 @@ function App() {
     <div className="App">
       <div className="wrapper">
         <Context.Provider value={{onAdd,onRemove,addMore,uniqueProducts}}>
-          <Header addedProducts={addedProducts.length} />
+          {/*<Header addedProducts={addedProducts.length} />*/}
           <Routes>
             <Route path={'/'} exact element={<ProductsList products={productsList} addedProducts={addedProducts} />} />
             <Route path={'/form'} element={<Form moveBack={moveBack} uniqueProducts={uniqueProducts} />} />
