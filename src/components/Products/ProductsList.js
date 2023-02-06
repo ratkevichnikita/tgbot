@@ -38,8 +38,9 @@ const ProductsList = ({products,addedProducts}) => {
 
   return (
     <div className={"products-list"}>
-      {products?.length > 0 && products.map(item => <ProductsItem key={item.id} product={item} />)}
-      <button onClick={() => goToFormPage()} >click</button>
+      success
+      {/*{products?.length > 0 && products.map(item => <ProductsItem key={item.id} product={item} />)}*/}
+      {/*<button onClick={() => goToFormPage()} >click</button>*/}
     </div>
   );
 };
