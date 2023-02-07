@@ -1,4 +1,3 @@
-// import '../public/images/3years.jpeg'
 
 export const products = [
     {
