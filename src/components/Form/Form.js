@@ -32,8 +32,7 @@ const Form = ({moveBack}) => {
       productInfo,
       queryId
     }
-
-    fetch('http://37.200.70.244:8000/web-data', {
+    fetch('https://api.bslackers.ru/web-data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   max-width: 400px;
   padding-top: 20px;
+  grid-gap: 5px;
 }
 
 .products-item {
@@ -11,6 +12,8 @@
   padding: 15px;
   max-width: 180px;
   break-inside: avoid;
+  background-color: #f0f0f05c;
+  border-radius: 10px;
 }
 
 .products-link {
