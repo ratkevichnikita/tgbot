@@ -5,17 +5,19 @@ import {Context} from "../../context";
 
 const Form = ({moveBack}) => {
   // состояния полей формы
-  const [payment, setPayment] = useState('');
-  const [location, setLocation] = useState('');
+  const [payment, setPayment] = useState('empty');
+  const [location, setLocation] = useState('empty');
   // переменные для Корзины
   const [totalSum, setTotalSum] = useState(null);
-  const {tg, queryId} = useTelegram();
+  const [userName,setUserName] = useState('Пусто')
+  const {tg, queryId, user} = useTelegram();
 
   const {uniqueProducts} = useContext(Context);
 
   const getTotalSum = (arr) => {
-    const total = arr.reduce((acc,curr) => acc + curr.price, 0)
-    setTotalSum(total)
+    const total = arr.reduce((acc,curr) => acc + curr.price, 0) + '000'
+    const newTotal = total.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+    setTotalSum(newTotal)
   }
 
   const onSendData = useCallback(() => {
@@ -30,6 +32,7 @@ const Form = ({moveBack}) => {
       location,
       totalSum,
       productInfo,
+      userName,
       queryId
     }
     fetch('https://api.bslackers.ru/web-data', {
@@ -56,16 +59,19 @@ const Form = ({moveBack}) => {
     if(uniqueProducts?.length > 0 ) {
       getTotalSum(uniqueProducts)
     }
+    if(user?.username) {
+      setUserName(user?.username)
+    }
 
   }, [])
 
   useEffect(() => {
-    if(!payment ) {
+    if(location !== 'empty' && payment !== 'empty' ) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
     }
-  }, [payment])
+  }, [payment,location])
 
   const onChangePayment = (e) => {
     setPayment(e.target.value)
@@ -103,22 +109,24 @@ const Form = ({moveBack}) => {
 
         </div>
         <div className="cart-total">
-          {totalSum && `Итого: ${totalSum} 000 IDR`}
+          {totalSum && `Итого: ${totalSum} IDR`}
         </div>
       </div>
       <h3>Введите ваши данные</h3>
       <div className="form-row">
-        <p className={"form-label"}>Выберите способ оплаты:</p>
+        <p className={"form-label"}>Способ оплаты:</p>
         <select value={payment} onChange={onChangePayment} className={'select'}>
+          <option value={'empty'}>Выберите способ оплаты</option>
           <option value={'Перевод на российскую карту'}>Перевод на российскую карту</option>
           <option value={'Перевод на карту Permata'}>Перевод на карту Permata</option>
-          <option value={'Оплата наличными при получении'}>Оплата наличными при получении</option>
+          <option value={'Оплата наличными при получении'}>Оплата наличными при самовывозе</option>
           <option value={'Оплата в USDT на криптокошелек'}>Оплата в USDT на криптокошелек</option>
         </select>
       </div>
       <div className="form-row">
-        <p className={"form-label"}>Выберите район Бали:</p>
+        <p className={"form-label"}>Выберите район:</p>
         <select value={location} onChange={onChangeLocation} className={'select'}>
+          <option value={'empty'}>Выберите район Бали</option>
           <option value={'Чангу'}>Чангу</option>
           <option value={'Семиньяк'}>Семиньяк</option>
           <option value={'Кута'}>Кута</option>
@@ -128,7 +136,6 @@ const Form = ({moveBack}) => {
           <option value={'Букит'}>Букит</option>
         </select>
       </div>
-      <button onClick={onSendData}>test send</button>
     </div>
   );
 };
