@@ -67,9 +67,9 @@ const Form = ({moveBack}) => {
 
   useEffect(() => {
     if(location !== 'empty' && payment !== 'empty' ) {
-      tg.MainButton.hide();
-    } else {
       tg.MainButton.show();
+    } else {
+      tg.MainButton.hide();
     }
   }, [payment,location])
 
@@ -89,7 +89,7 @@ const Form = ({moveBack}) => {
           <p onClick={moveBack}>Редактировать</p>
         </div>
         <div className="cart-list">
-          { uniqueProducts.map(item => {
+          { uniqueProducts?.map(item => {
               return (
                 <div key={item.id} className="cart-item">
                   <div className="cart-inner">
@@ -115,7 +115,7 @@ const Form = ({moveBack}) => {
       <h3>Введите ваши данные</h3>
       <div className="form-row">
         <p className={"form-label"}>Способ оплаты:</p>
-        <select value={payment} onChange={onChangePayment} className={'select'}>
+        <select value={payment} onChange={onChangePayment} className={payment === 'empty' ? 'select mistake' : 'select good'}>
           <option value={'empty'}>Выберите способ оплаты</option>
           <option value={'Перевод на российскую карту'}>Перевод на российскую карту</option>
           <option value={'Перевод на карту Permata'}>Перевод на карту Permata</option>
@@ -125,7 +125,7 @@ const Form = ({moveBack}) => {
       </div>
       <div className="form-row">
         <p className={"form-label"}>Выберите район:</p>
-        <select value={location} onChange={onChangeLocation} className={'select'}>
+        <select value={location} onChange={onChangeLocation} className={location === 'empty' ? 'select mistake' : 'select good'}>
           <option value={'empty'}>Выберите район Бали</option>
           <option value={'Чангу'}>Чангу</option>
           <option value={'Семиньяк'}>Семиньяк</option>

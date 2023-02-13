@@ -31,6 +31,14 @@
   min-height: 35px;
 }
 
+.select.mistake {
+  border: 1px solid #dc3232;
+}
+
+.select.good {
+  border: 1px solid #6dc22e;
+}
+
 .form-label {
   color: #2424247a;
   margin-bottom: 8px;

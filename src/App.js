@@ -1,6 +1,5 @@
 import React from "react";
 import {useEffect, useState} from "react";
-import Header from "./components/Header/Header";
 import {useTelegram} from "./components/hooks/useTelegram";
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import ProductsList from "./components/Products/ProductsList";
@@ -13,7 +12,7 @@ function App() {
 
   const navigate = useNavigate()
 
-  const { onToggleButton, tg } = useTelegram();
+  const { tg } = useTelegram();
 
   const [productsList, setProductsList] = useState([]);
 
@@ -98,11 +97,10 @@ function App() {
     <div className="App">
       <div className="wrapper">
         <Context.Provider value={{onAdd,onRemove,addMore,uniqueProducts}}>
-          {/*<Header addedProducts={addedProducts.length} />*/}
           <Routes>
             <Route path={'/'} exact element={<ProductsList products={productsList} addedProducts={addedProducts} />} />
             <Route path={'/form'} element={<Form moveBack={moveBack} uniqueProducts={uniqueProducts} />} />
-            <Route exact path={'/products/:id'} element={<ProductsSingle />} />
+            <Route exact path={'/products/:id'} element={<ProductsSingle moveBack={moveBack} products={productsList} />} />
           </Routes>
         </Context.Provider>
 
