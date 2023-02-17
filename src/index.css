@@ -13,6 +13,8 @@ body {
 
 h1,h2,h3,h4 {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 textarea,button {
@@ -42,6 +44,10 @@ p {
 button {
   border: none;
   outline: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  color: inherit;
 }
 
 a {

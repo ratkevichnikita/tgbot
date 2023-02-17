@@ -85,7 +85,7 @@ const Form = ({moveBack}) => {
     <div className={"form"}>
       <div className="cart">
         <div className="cart-box">
-          <h3>Ваш заказ</h3>
+          <h4>Ваш заказ</h4>
           <p onClick={moveBack}>Редактировать</p>
         </div>
         <div className="cart-list">
@@ -112,7 +112,7 @@ const Form = ({moveBack}) => {
           {totalSum && `Итого: ${totalSum} IDR`}
         </div>
       </div>
-      <h3>Введите ваши данные</h3>
+      <h4 className={"form-title"}>Данные для заказа</h4>
       <div className="form-row">
         <p className={"form-label"}>Способ оплаты:</p>
         <select value={payment} onChange={onChangePayment} className={payment === 'empty' ? 'select mistake' : 'select good'}>

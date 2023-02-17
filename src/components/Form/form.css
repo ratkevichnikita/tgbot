@@ -8,6 +8,10 @@
   display: block;
 }
 
+.form-title {
+  margin: 15px 0;
+}
+
 .form-row {
   margin-bottom: 15px;
   max-width: 400px;
@@ -42,6 +46,7 @@
 .form-label {
   color: #2424247a;
   margin-bottom: 8px;
+  font-size: 14px;
 }
 
 .cart-list {
@@ -54,6 +59,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .cart-box p {
@@ -85,7 +91,7 @@
 
 .cart-title p {
   font-weight: 600;
-  font-size: 14px;
+  font-size: clamp(12px,calc(0.45em + 1.7vw),16px);
   line-height: 1.3em;
   margin-bottom: 3px;
 }

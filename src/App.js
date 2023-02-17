@@ -16,9 +16,13 @@ function App() {
 
   const [productsList, setProductsList] = useState([]);
 
+  const [categories, setCategories] = useState([]);
+
+  const [curCat, setCurCat] = useState('all')
+
   const [addedProducts, setAddedProducts] = useState([]);
 
-  const [uniqueProducts, setUniqueProducts] = useState([])
+  const [uniqueProducts, setUniqueProducts] = useState([]);
 
   useEffect(() => {
     if(addedProducts?.length > 0) {
@@ -87,23 +91,42 @@ function App() {
     setAddedProducts(data)
   }
   const moveBack = () => navigate('/');
+  const changeCategories = (catName) => {
+    const changedCat = categories.map(cat => {
+      return {...cat, selected: catName === cat.name}
+    })
+    setCurCat(catName)
+    setCategories(changedCat)
+  }
 
   useEffect(() => {
     tg.ready();
-    setProductsList(products);
+    if(products.length > 0 ) {
+      setProductsList(products);
+      const categories = products.map(item => {
+        const title = item.category === 'toys' ? 'Игрушки' : 'Книги'
+        return {
+          name: item.category,
+          title,
+          selected: false
+        }
+      })
+      categories.unshift({ name:'all',title:'Все',selected: true })
+      const uniqueCategories = [...new Map(categories.map(m => [m.name, m])).values()]
+      setCategories(uniqueCategories)
+    }
   }, [])
-
   return (
     <div className="App">
       <div className="wrapper">
         <Context.Provider value={{onAdd,onRemove,addMore,uniqueProducts}}>
           <Routes>
-            <Route path={'/'} exact element={<ProductsList products={productsList} addedProducts={addedProducts} />} />
+            <Route path={'/'} exact element={<ProductsList changeCategories={changeCategories} curCat={curCat} categories={categories} products={productsList} addedProducts={addedProducts} />} />
             <Route path={'/form'} element={<Form moveBack={moveBack} uniqueProducts={uniqueProducts} />} />
             <Route exact path={'/products/:id'} element={<ProductsSingle moveBack={moveBack} products={productsList} />} />
           </Routes>
         </Context.Provider>
-
+        <button onClick={() => navigate('/form')}>CLICK</button>
       </div>
     </div>
   );

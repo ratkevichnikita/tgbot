@@ -2,6 +2,7 @@ import React, {useEffect, useState, useContext} from 'react';
 import {useParams} from "react-router-dom";
 import {Context} from "../../context";
 import arrow from '../../images/arrow.png'
+import YoutubeEmbed from "../YoutubeEmbed/YoutubeEmbed";
 
 const ProductsSingle = ({products,moveBack}) => {
 
@@ -22,6 +23,7 @@ const ProductsSingle = ({products,moveBack}) => {
         Вернуться назад
       </p>
       {currentProduct?.map(item => {
+        const text = item.description.split('/').join('<br /><br />');
         return (
           <div key={item.id} className={"single-item"}>
             <div className="single-header">
@@ -30,7 +32,10 @@ const ProductsSingle = ({products,moveBack}) => {
               </div>
               <div className="single-info">
                 <p className={"single-title"}>{item.title}</p>
-                <p className={"single-price"}>{item.price} 000 IDR</p>
+                <div className="single-box">
+                  <p className={"single-price"}>{item.price} 000 IDR</p>
+                  {item.count && item.count > 0 ? <span>{item.count} шт.</span> : ''}
+                </div>
                 {!item.added
                   ? <button className={"products-add"} onClick={() => onAdd(item.id)}>Добавить</button>
                   : <div className={'products-more'}>
@@ -39,14 +44,9 @@ const ProductsSingle = ({products,moveBack}) => {
                   </div>
                 }
               </div>
-
             </div>
-            <div className="single-text">
-              Сборник заданий для деток в возрасте от 3 до 4 лет. <br/><br/>
-              В книге всего 80 заданий с яркими и красочными иллюстрациями. Все задания разбиты на темы. Всего выбрано 4 темы: математика, мышление, внимание и моторика. <br/><br/>
-              Задания в книге расположены таким образом, чтобы, можно было заниматься с ребенком по 15-20 минут в день, и при этом в полной мере охватить всю программу: потренировать память и мышление; уделить внимание таким важным областям знаний, как математика; подготовить руку к письму. <br/><br/>
-              Всего в книге десять занятий. Каждое занятие занимает четыре странички. Не торопите малыша во время задания, старайтесь ему помогать, но в то же время не подавляйте инициативы. Не оценивайте результаты ребёнка слишком строго и по окончании работы обязательно его похвалите.
-            </div>
+            <div dangerouslySetInnerHTML={{__html: text}} className="single-text" />
+            {item.video && <div className={"single-video"}> <YoutubeEmbed embedId={item.video} /> </div>}
           </div>
         )
       })}
