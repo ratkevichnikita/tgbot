@@ -61,7 +61,7 @@ const ProductsList = ({products, addedProducts, categories, changeCategories, cu
             }
           </div>
         </div>
-        <p className={"products-desc"}>Всего найдено {items?.length} товаров: </p>
+        <p className={"products-desc"}>Всего найдено <span>{items?.length}</span> товаров: </p>
         <div className={"products-list"}>
           {products?.length > 0 && items.map(item => <ProductsItem goToSingle={goToSingle} key={item.id} product={item} />)}
         </div>

@@ -65,12 +65,12 @@
 
 .products-count {
   position: absolute;
-  right: -8px;
+  right: -3px;
   top: 3px;
   font-size: 14px;
   color: #fff;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background-color: #239DEF;
   display: flex;
@@ -128,9 +128,13 @@
 
 .products-desc {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.3em;
   margin-bottom: 5px;
+}
+
+.products-desc span {
+  font-weight: 700;
 }
 
 /*CATEGORY OF PRUCTS*/
@@ -143,8 +147,8 @@
 }
 
 .products-category-title {
-  font-weight: 700;
-  font-size: 12px;
+  font-weight: 400;
+  font-size: 14px;
   line-height: 1.3em;
   margin-bottom: 5px;
 }
@@ -158,9 +162,9 @@
   border-radius: 5px;
   border: 1px solid #239DEF;
   width: 90px;
+  font-weight: 400;
   text-align: center;
   padding: 8px 0;
-  font-weight: 700;
   font-size: 12px;
   line-height: 1.3em;
   transition: 0.3s linear;

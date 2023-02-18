@@ -7,6 +7,7 @@ const Form = ({moveBack}) => {
   // состояния полей формы
   const [payment, setPayment] = useState('empty');
   const [location, setLocation] = useState('empty');
+  const [phone, setPhone] = useState('empty');
   // переменные для Корзины
   const [totalSum, setTotalSum] = useState(null);
   const [userName,setUserName] = useState('Пусто')
@@ -33,6 +34,7 @@ const Form = ({moveBack}) => {
       totalSum,
       productInfo,
       userName,
+      phone,
       queryId
     }
     fetch('https://api.bslackers.ru/web-data', {
@@ -81,6 +83,9 @@ const Form = ({moveBack}) => {
     setLocation(e.target.value)
   }
 
+  const onChangePhone = (e) => {
+    setPhone(e.target.value)
+  }
   return (
     <div className={"form"}>
       <div className="cart">
@@ -135,6 +140,10 @@ const Form = ({moveBack}) => {
           <option value={'Санур'}>Санур</option>
           <option value={'Букит'}>Букит</option>
         </select>
+      </div>
+      <div className="form-row">
+        <p className={"form-label"}>Номер телефона для связи:</p>
+        <input onChange={onChangePhone} placeholder={"Введите номер"} className={"input"} type="number"/>
       </div>
     </div>
   );
