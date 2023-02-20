@@ -126,7 +126,6 @@ function App() {
             <Route exact path={'/products/:id'} element={<ProductsSingle moveBack={moveBack} addedProducts={addedProducts} products={productsList} />} />
           </Routes>
         </Context.Provider>
-        <button onClick={() => navigate('/form')} >click</button>
       </div>
     </div>
   );
