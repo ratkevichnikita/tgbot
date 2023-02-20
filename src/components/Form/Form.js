@@ -70,7 +70,7 @@ const Form = ({moveBack}) => {
 
   useEffect(() => {
     if(location !== 'empty' && payment !== 'empty' && phone.length > 9 ) {
-      tg.MainButton.show().showProgress(true);
+      tg.MainButton.show()
     } else {
       tg.MainButton.hide();
     }
