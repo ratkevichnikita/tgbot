@@ -123,10 +123,10 @@ function App() {
           <Routes>
             <Route path={'/'} exact element={<ProductsList changeCategories={changeCategories} curCat={curCat} categories={categories} products={productsList} addedProducts={addedProducts} />} />
             <Route path={'/form'} element={<Form moveBack={moveBack} uniqueProducts={uniqueProducts} />} />
-            <Route exact path={'/products/:id'} element={<ProductsSingle moveBack={moveBack} products={productsList} />} />
+            <Route exact path={'/products/:id'} element={<ProductsSingle moveBack={moveBack} addedProducts={addedProducts} products={productsList} />} />
           </Routes>
         </Context.Provider>
-        <button onClick={() => navigate('/form')}>CLICK</button>
+        <button onClick={() => navigate('/form')} >click</button>
       </div>
     </div>
   );

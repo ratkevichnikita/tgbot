@@ -30,14 +30,14 @@ const ProductsList = ({products, addedProducts, categories, changeCategories, cu
 
   useEffect(() => {
     tg.MainButton.setParams({
-      text: 'Оформить заказ'
+      text: `Оформить заказ (${addedProducts.length} шт.)`
     })
 
     tg.onEvent('mainButtonClicked', goToFormPage)
     return () => {
       tg.offEvent('mainButtonClicked', goToFormPage)
     }
-  }, [])
+  }, [addedProducts])
 
   useEffect(() => {
     if(products.length > 0) {

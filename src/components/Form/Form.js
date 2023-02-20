@@ -2,12 +2,13 @@ import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {useTelegram} from "../hooks/useTelegram";
 import './form.css';
 import {Context} from "../../context";
+import edit from '../../images/edit.png'
 
 const Form = ({moveBack}) => {
   // состояния полей формы
   const [payment, setPayment] = useState('empty');
   const [location, setLocation] = useState('empty');
-  const [phone, setPhone] = useState('empty');
+  const [phone, setPhone] = useState('');
   // переменные для Корзины
   const [totalSum, setTotalSum] = useState(null);
   const [userName,setUserName] = useState('Пусто')
@@ -45,7 +46,7 @@ const Form = ({moveBack}) => {
       body: JSON.stringify(data)
     })
     // tg.sendData(JSON.stringify(data));
-  }, [payment, location, totalSum, uniqueProducts])
+  }, [payment, location, totalSum, uniqueProducts, phone])
 
   useEffect(() => {
     tg.onEvent('mainButtonClicked', onSendData)
@@ -68,12 +69,12 @@ const Form = ({moveBack}) => {
   }, [])
 
   useEffect(() => {
-    if(location !== 'empty' && payment !== 'empty' ) {
-      tg.MainButton.show();
+    if(location !== 'empty' && payment !== 'empty' && phone.length > 9 ) {
+      tg.MainButton.show().showProgress(true);
     } else {
       tg.MainButton.hide();
     }
-  }, [payment,location])
+  }, [payment,location,phone])
 
   const onChangePayment = (e) => {
     setPayment(e.target.value)
@@ -91,7 +92,10 @@ const Form = ({moveBack}) => {
       <div className="cart">
         <div className="cart-box">
           <h4>Ваш заказ</h4>
-          <p onClick={moveBack}>Редактировать</p>
+          <p onClick={moveBack}>
+            <img src={edit} alt="Редактировать"/>
+            Редактировать
+          </p>
         </div>
         <div className="cart-list">
           { uniqueProducts?.map(item => {
@@ -143,7 +147,7 @@ const Form = ({moveBack}) => {
       </div>
       <div className="form-row">
         <p className={"form-label"}>Номер телефона для связи:</p>
-        <input onChange={onChangePhone} placeholder={"Введите номер"} className={"input"} type="number"/>
+        <input onChange={onChangePhone} placeholder={"Введите номер"} className={phone.length > 9 ? 'input good' : 'input mistake'} type="tel"/>
       </div>
     </div>
   );

@@ -3,10 +3,23 @@ import {useParams} from "react-router-dom";
 import {Context} from "../../context";
 import arrow from '../../images/arrow.png'
 import YoutubeEmbed from "../YoutubeEmbed/YoutubeEmbed";
+import {useTelegram} from "../hooks/useTelegram";
+import { useNavigate } from "react-router-dom";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+// import required modules
+import { Pagination } from "swiper";
+// Import Swiper styles
+import 'swiper/css';
+import "swiper/css/pagination";
 
-const ProductsSingle = ({products,moveBack}) => {
+const ProductsSingle = ({products,moveBack,addedProducts}) => {
 
   const {onAdd,onRemove,addMore} = useContext(Context)
+
+  const {tg} = useTelegram();
+
+  const navigate = useNavigate()
 
   const [currentProduct, setCurrentProduct] = useState(null)
   let { id } = useParams();
@@ -15,6 +28,29 @@ const ProductsSingle = ({products,moveBack}) => {
     const product = products.filter(item => item.id === +id)
     setCurrentProduct(product)
   }, [products])
+
+  const goToFormPage = () => {
+    navigate('/form')
+  }
+
+  useEffect(() => {
+    if(addedProducts?.length > 0) {
+      tg.MainButton.show();
+    } else {
+      tg.MainButton.hide();
+    }
+  }, [addedProducts])
+
+  useEffect(() => {
+    tg.MainButton.setParams({
+      text: `Оформить заказ (${addedProducts.length} шт.)`
+    })
+
+    tg.onEvent('mainButtonClicked', goToFormPage)
+    return () => {
+      tg.offEvent('mainButtonClicked', goToFormPage)
+    }
+  }, [addedProducts])
 
   return (
     <div className={"singe-wrap"}>
@@ -28,7 +64,12 @@ const ProductsSingle = ({products,moveBack}) => {
           <div key={item.id} className={"single-item"}>
             <div className="single-header">
               <div className="single-img">
-                <img src={item.img} alt={item.title} />
+                { item.additionalPhotos.length > 0
+                    ? <Swiper slidesPerView={1} pagination={{clickable: true}} loop={true} modules={[Pagination]} >
+                        {item.additionalPhotos.map( img => <SwiperSlide key={img} > <img src={img} alt={item.title} /></SwiperSlide> )}
+                      </Swiper>
+                    : <img src={item.img} alt={item.title} />
+                }
               </div>
               <div className="single-info">
                 <p className={"single-title"}>{item.title}</p>

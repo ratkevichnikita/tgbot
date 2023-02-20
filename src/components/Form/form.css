@@ -35,11 +35,13 @@
   min-height: 35px;
 }
 
-.select.mistake {
+.select.mistake,
+.input.mistake {
   border: 1px solid #dc3232;
 }
 
-.select.good {
+.select.good,
+.input.good {
   border: 1px solid #6dc22e;
 }
 
@@ -63,9 +65,16 @@
 }
 
 .cart-box p {
+  display: flex;
+  align-items: center;
   color: green;
   cursor: pointer;
   font-size: 14px;
+}
+
+.cart-box p img {
+  max-width: 20px;
+  margin-right: 5px;
 }
 
 .cart-item {
